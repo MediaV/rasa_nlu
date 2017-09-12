@@ -52,7 +52,7 @@ class FastTextFeaturizer(Featurizer):
         from subprocess import Popen, PIPE, STDOUT
         import numpy as np
 
-        cmd = '{} print-word-vectors {}'.format(fasttext, model)
+        cmd = '{} print-sentence-vectors {}'.format(fasttext, model)
         process = Popen(cmd.split(), stdout = PIPE, stdin = PIPE, stderr = STDOUT)
         x = process.communicate(input = doc)[0]
         return np.array(map(lambda x : float(x), x.split()[1:]))
