@@ -1,0 +1,124 @@
+{
+  "rasa_nlu_data": {
+    "entity_synonyms": [
+      {
+        "value": "adspace",
+        "synonyms": ["adspaceid", "adspace"]
+      }
+    ],
+    "common_examples": [
+      {
+        "text": "hey",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "hey there",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "hello",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "hi",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "good morning",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "good evening",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "dear sir",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "nice to meet you",
+        "intent": "greet",
+        "entities": []
+      },
+      {
+        "text": "adspaceid 12345 is not valid",
+        "intent": "antifraud",
+        "entities": [
+          {
+            "start": 10,
+            "end": 15,
+            "value": "12345",
+            "entity": "adspace"
+          }
+        ]
+      },
+      {
+        "text": "something wrong with adspaceId 34567",
+        "intent": "antifraud",
+        "entities": [
+          {
+            "start": 31,
+            "end": 36,
+            "value": "34567",
+            "entity": "adspace"
+          }
+        ]
+      },
+      {
+        "text": "Is there any click on adspaceid 1357 ?",
+        "intent": "antifraud",
+        "entities": [
+          {
+            "start": 32,
+            "end": 36,
+            "value": "1357",
+            "entity": "adspace"
+          }
+        ]
+      },
+      {
+        "text": "what is the ctr on adspaceId 1357 ?",
+        "intent": "antifraud",
+        "entities": [
+          {
+            "start": 29,
+            "end": 33,
+            "value": "1357",
+            "entity": "adspace"
+          }
+        ]
+      },
+      {
+        "text": "please pay attention to AdspaceId 45678",
+        "intent": "antifraud",
+        "entities": [
+          {
+            "start": 34,
+            "end": 39,
+            "value": "45678",
+            "entity": "adspace"
+          }
+        ]
+      },
+      {
+        "text": "Is Adspaceid 23456 in error ?",
+        "intent": "antifraud",
+        "entities": [
+          {
+            "start": 13,
+            "end": 18,
+            "value": "23456",
+            "entity": "adspace"
+          }
+        ]
+      }
+    ]
+  }
+}

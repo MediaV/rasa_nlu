@@ -18,6 +18,7 @@ from twisted.internet.defer import inlineCallbacks, returnValue, maybeDeferred
 from rasa_nlu.config import RasaNLUConfig
 from rasa_nlu.data_router import DataRouter, InvalidModelError
 from rasa_nlu.version import __version__
+from rasa_nlu.utils.id_version_manager import IdVersionManager
 
 logger = logging.getLogger(__name__)
 
@@ -100,6 +101,123 @@ class RasaNLU(object):
         self.data_router = DataRouter(config, component_builder)
         self._testing = testing
         reactor.suggestThreadPoolSize(config['num_threads'] * 5)
+        self.id_version_manager = IdVersionManager(self.data_router.config['path'])
+
+    @app.route("/model/<int:model_id>/versions", methods=['GET'])
+    @requires_auth
+    @check_cors
+    def get_model(self, request, model_id):
+        request.setHeader('Content-Type', 'application/json')
+        try:
+            request.setResponseCode(200)
+            model_data = self.id_version_manager.get_model_version(model_id)
+            return json.dumps({'result': 'true', 'data': model_data})
+        except ValueError as e:
+            request.setResponseCode(405)
+            return json.dumps({"error": "{}".format(e)})
+
+    @app.route("/model", methods=['GET'])
+    @requires_auth
+    @check_cors
+    def lookup_model(self, request):
+        request.setHeader('Content-Type', 'application/json')
+        try:
+            kwargs = json.loads(request.content.read().decode('utf-8', 'strict'))
+            lookup_is_active = kwargs.get('is_active', False)
+            lookup_page = kwargs.get('page', 0)
+            lookup_limit = kwargs.get('limit', 20)
+            lookup_result = self.id_version_manager.lookup_model(lookup_is_active, lookup_page, lookup_limit)
+            return json.dumps({'result': 'true', 'data': lookup_result})
+        except ValueError as e:
+            request.setResponseCode(405)
+            return json.dumps({"error": "{}".format(e)})
+
+    @app.route("/model/<int:model_id>", methods=['DELETE'])
+    @requires_auth
+    @check_cors
+    def delete_model(self, request, model_id):
+        request.setHeader('Content-Type', 'application/json')
+        try:
+            request.setResponseCode(200)
+            self.id_version_manager.delete_model(model_id)
+            return json.dumps({'result': 'true'})
+        except ValueError as e:
+            request.setResponseCode(405)
+            return json.dumps({'error': '{}'.format(e)})
+
+    @app.route("/model/<int:model_id>/enable", methods=['POST'])
+    @requires_auth
+    @check_cors
+    def enable_model(self, request, model_id):
+        request.setHeader('Content-Type', 'application/json')
+        try:
+            request.setResponseCode(200)
+            kwargs = json.loads(request.content.read().decode('utf-8', 'strict'))
+            if 'version' in kwargs:
+                model_version = kwargs['version']
+                self.id_version_manager.enable_model(model_id, model_version)
+            else:
+                raise ValueError('missing argument version')
+            return json.dumps({'result': 'true'})
+        except ValueError as e:
+            request.setResponseCode(405)
+            return json.dumps({'error': '{}'.format(e)})
+
+    @app.route("/model/<int:model_id>/disable", methods=['POST'])
+    @requires_auth
+    @check_cors
+    def disable_model(self, request, model_id):
+        request.setHeader('Content-Type', 'application/json')
+        try:
+            request.setResponseCode(200)
+            kwargs = json.loads(request.content.read().decode('utf-8', 'strict'))
+            self.id_version_manager.disable_model(model_id)
+            return json.dumps({'result': 'true'})
+        except ValueError as e:
+            request.setResponseCode(405)
+            return json.dumps({'error': '{}'.format(e)})
+
+    @app.route("/model/<int:model_id>/switch", methods=['POST'])
+    @requires_auth
+    @check_cors
+    def switch_model(self, request, model_id):
+        request.setHeader('Content-Type', 'application/json')
+        try:
+            request.setResponseCode(200)
+            kwargs = json.loads(request.content.read().decode('utf-8', 'strict'))
+            if 'version' in kwargs:
+                model_version = kwargs['version']
+                self.id_version_manager.switch_model(model_id, model_version)
+            else:
+                raise ValueError('missing arg: version')
+            return json.dumps({'result': 'true'})
+        except ValueError as e:
+            request.setResponseCode(405)
+            return json.dumps({'error': '{}'.format(e)})
+
+    @app.route("/model/<int:model_id>/train", methods=['POST'])
+    @requires_auth
+    @check_cors
+    @inlineCallbacks
+    def train_model(self, request, model_id):
+        request.setHeader('Content-Type', 'application/json')
+        try:
+            next_model_id = self.id_version_manager.next_model_id()
+            if model_id > next_model_id:
+                logger.warn('model_id too large, use current next model id: {} instead'.format(next_model_id))
+                model_id = next_model_id
+            model_version = self.id_version_manager.next_model_version(model_id)
+            model_name = 'model_{}-{}'.format(model_id, model_version)
+
+            kwargs = {'name': model_name}
+            data_string = request.content.read().decode('utf-8', 'strict')
+
+            request.setResponseCode(200)
+            response = yield self.data_router.start_train_process(data_string, kwargs)
+            returnValue(json.dumps({'info': 'new model trained: {}'.format(response)}))
+        except ValueError as e:
+            request.setResponseCode(405)
+            returnValue(json.dumps({'error': '{}'.format(e)}))
 
     @app.route("/", methods=['GET'])
     @check_cors
