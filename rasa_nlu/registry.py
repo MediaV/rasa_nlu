@@ -30,6 +30,7 @@ from rasa_nlu.model import Metadata
 from rasa_nlu.tokenizers.mitie_tokenizer import MitieTokenizer
 from rasa_nlu.tokenizers.spacy_tokenizer import SpacyTokenizer
 from rasa_nlu.tokenizers.whitespace_tokenizer import WhitespaceTokenizer
+from rasa_nlu.tokenizers.jieba_tokenizer import JiebaTokenizer
 from rasa_nlu.utils.mitie_utils import MitieNLP
 from rasa_nlu.utils.spacy_utils import SpacyNLP
 
@@ -43,7 +44,7 @@ component_classes = [
     SpacyEntityExtractor, MitieEntityExtractor, DucklingExtractor, CRFEntityExtractor,
     EntitySynonymMapper,
     SpacyFeaturizer, MitieFeaturizer, NGramFeaturizer, RegexFeaturizer,
-    MitieTokenizer, SpacyTokenizer, WhitespaceTokenizer,
+    MitieTokenizer, SpacyTokenizer, WhitespaceTokenizer, JiebaTokenizer,
     SklearnIntentClassifier, MitieIntentClassifier, KeywordIntentClassifier,
 ]
 
@@ -54,6 +55,14 @@ registered_components = {
 # To simplify usage, there are a couple of model templates, that already add necessary components in the right order.
 # They also implement the preexisting `backends`.
 registered_pipeline_templates = {
+    'mitie_jieba_sklearn' : [
+        'nlp_mitie',
+        'tokenizer_jieba',
+        'ner_mitie',
+        'ner_synonyms',
+        'intent_featurizer_mitie',
+        'intent_classifier_sklearn',
+    ],
     "spacy_sklearn": [
         "nlp_spacy",
         "tokenizer_spacy",
@@ -92,6 +101,7 @@ registered_pipeline_templates = {
         "tokenizer_whitespace",
         "tokenizer_mitie",
         "tokenizer_spacy",
+        "tokenizer_jieba",
         "intent_featurizer_mitie",
         "intent_featurizer_spacy",
         "intent_featurizer_ngrams",
