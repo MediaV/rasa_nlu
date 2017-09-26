@@ -26,6 +26,7 @@ from rasa_nlu.featurizers.mitie_featurizer import MitieFeaturizer
 from rasa_nlu.featurizers.ngram_featurizer import NGramFeaturizer
 from rasa_nlu.featurizers.regex_featurizer import RegexFeaturizer
 from rasa_nlu.featurizers.spacy_featurizer import SpacyFeaturizer
+from rasa_nlu.featurizers.fasttext_featurizer import FastTextFeaturizer
 from rasa_nlu.model import Metadata
 from rasa_nlu.tokenizers.mitie_tokenizer import MitieTokenizer
 from rasa_nlu.tokenizers.spacy_tokenizer import SpacyTokenizer
@@ -33,6 +34,7 @@ from rasa_nlu.tokenizers.whitespace_tokenizer import WhitespaceTokenizer
 from rasa_nlu.tokenizers.jieba_tokenizer import JiebaTokenizer
 from rasa_nlu.utils.mitie_utils import MitieNLP
 from rasa_nlu.utils.spacy_utils import SpacyNLP
+from rasa_nlu.utils.fasttext_utils import FastTextNLP
 
 if typing.TYPE_CHECKING:
     from rasa_nlu.components import Component
@@ -40,10 +42,10 @@ if typing.TYPE_CHECKING:
 
 # Classes of all known components. If a new component should be added, its class needs to be listed here.
 component_classes = [
-    SpacyNLP, MitieNLP,
+    SpacyNLP, MitieNLP, FastTextNLP,
     SpacyEntityExtractor, MitieEntityExtractor, DucklingExtractor, CRFEntityExtractor,
     EntitySynonymMapper,
-    SpacyFeaturizer, MitieFeaturizer, NGramFeaturizer, RegexFeaturizer,
+    SpacyFeaturizer, MitieFeaturizer, NGramFeaturizer, RegexFeaturizer, FastTextFeaturizer,
     MitieTokenizer, SpacyTokenizer, WhitespaceTokenizer, JiebaTokenizer,
     SklearnIntentClassifier, MitieIntentClassifier, KeywordIntentClassifier,
 ]
@@ -62,6 +64,13 @@ registered_pipeline_templates = {
         'ner_synonyms',
         'intent_featurizer_mitie',
         'intent_classifier_sklearn',
+    ],
+    "fasttext_sklearn": [
+        "nlp_fasttext",
+        "intent_featurizer_fasttext",
+        "ner_duckling",
+        "ner_synonyms",
+        "intent_classifier_sklearn",
     ],
     "spacy_sklearn": [
         "nlp_spacy",
@@ -98,12 +107,14 @@ registered_pipeline_templates = {
     "all_components": [
         "nlp_spacy",
         "nlp_mitie",
+        "nlp_fasttext",
         "tokenizer_whitespace",
         "tokenizer_mitie",
         "tokenizer_spacy",
         "tokenizer_jieba",
         "intent_featurizer_mitie",
         "intent_featurizer_spacy",
+        "intent_featurizer_fasttext",
         "intent_featurizer_ngrams",
         "intent_entity_featurizer_regex",
         "ner_mitie",

@@ -1,0 +1,8 @@
+{
+  "pipeline": "fasttext_sklearn",
+  "language": "zh",
+  "path" : "./models",
+  "data" : "./data/examples/rasa/demo-rasa-zh.json",
+  "fasttext" : "/home/zhangyifan-sal/fastText/fasttext",
+  "model" : "/home/zhangyifan-sal/model/wiki.zh.bin"
+}
