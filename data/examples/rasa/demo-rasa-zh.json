@@ -77,6 +77,11 @@
         "entities": []
       },
       {
+        "text": "好滴",
+        "intent": "affirm",
+        "entities": []
+      },
+      {
         "text": "好啊",
         "intent": "affirm",
         "entities": []
@@ -262,4 +267,3 @@
     ]
   }
 }
-
