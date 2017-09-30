@@ -57,7 +57,16 @@ registered_components = {
 # To simplify usage, there are a couple of model templates, that already add necessary components in the right order.
 # They also implement the preexisting `backends`.
 registered_pipeline_templates = {
-    'mitie_jieba_sklearn' : [
+    'fasttext_jieba_sklearn': [
+        'nlp_mitie',
+        'nlp_fasttext',
+        'tokenizer_jieba',
+        'ner_mitie',
+        'ner_synonyms',
+        "intent_featurizer_fasttext",
+        'intent_classifier_sklearn',
+    ],
+    'mitie_jieba_sklearn': [
         'nlp_mitie',
         'tokenizer_jieba',
         'ner_mitie',

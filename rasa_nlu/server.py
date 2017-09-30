@@ -131,7 +131,7 @@ class RasaNLU(object):
                 request.setResponseCode(200)
                 response = yield (self.data_router.parse(data) if self._testing
                                   else threads.deferToThread(self.data_router.parse, data))
-                returnValue(json.dumps(response))
+                returnValue(json.dumps(response, ensure_ascii=False).encode('utf-8'))
             except InvalidModelError as e:
                 request.setResponseCode(404)
                 returnValue(json.dumps({"error": "{}".format(e)}))
