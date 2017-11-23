@@ -1,0 +1,7 @@
+Usage:
+
+python2.7 -m rasa_nlu.train -c sample_configs/config_fasttext_sklearn.json
+
+python2.7 -m rasa_nlu.server -c sample_configs/config_fasttext_sklearn.json --server_model_dirs=./model_20171107-102351
+
+curl -XPOST localhost:5000/parse -d '{"q":"I am looking for Chinese food"}' | python -mjson.tool

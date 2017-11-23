@@ -1,0 +1,330 @@
+{
+  "rasa_nlu_data": {
+    "common_examples": [
+      {
+        "text": "234广告位星级从什么时候开始变化的？", 
+        "intent": "invest_adspace", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 3, 
+            "value": "234", 
+            "entity": "adspace_id"
+          }
+        ]
+      }, 
+      {
+        "text": "5123广告位星级变化是哪些因素导致？", 
+        "intent": "invest_adspace", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 4, 
+            "value": "5123", 
+            "entity": "adspace_id"
+          }
+        ]
+      }, 
+      {
+        "text": "1002广告位星级变化来源哪个DSP？", 
+        "intent": "invest_adspace", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 4, 
+            "value": "1002", 
+            "entity": "adspace_id"
+          }
+        ]
+      }, 
+      {
+        "text": "759广告位星级的变化属于正常变化吗？", 
+        "intent": "invest_adspace", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 3, 
+            "value": "759", 
+            "entity": "adspace_id"
+          }
+        ]
+      }, 
+      {
+        "text": "2023广告位星级正常吗？相关指标如何？", 
+        "intent": "invest_adspace", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 4, 
+            "value": "2023", 
+            "entity": "adspace_id"
+          }
+        ]
+      }, 
+      {
+        "text": "888广告位星级过低/过高由那些原因导致？", 
+        "intent": "invest_adspace", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 3, 
+            "value": "888", 
+            "entity": "adspace_id"
+          }
+        ]
+      }, 
+      {
+        "text": "26630广告位星级过低/过高是所有DSP都如此，还是由于个别DSP导致？", 
+        "intent": "invest_adspace", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 5, 
+            "value": "26630", 
+            "entity": "adspace_id"
+          }
+        ]
+      }, 
+      {
+        "text": "6701广告位星级过去一周的星级情况如何？", 
+        "intent": "invest_adspace", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 4, 
+            "value": "6701", 
+            "entity": "adspace_id"
+          }, 
+          {
+            "start": 9, 
+            "end": 13, 
+            "value": "过去一周", 
+            "entity": "time"
+          }
+        ]
+      }, 
+      {
+        "text": "4545广告位星级忽然上升，那些指标发生变化？", 
+        "intent": "invest_adspace", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 4, 
+            "value": "4545", 
+            "entity": "adspace_id"
+          }
+        ]
+      }, 
+      {
+        "text": "570广告位星级变化，是忽然变化还是某一段时间持续变化导致？", 
+        "intent": "invest_adspace", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 3, 
+            "value": "570", 
+            "entity": "adspace_id"
+          }
+        ]
+      },
+      {
+        "text": "701站点在MAX历史上有投放吗", 
+        "intent": "invest_publisher", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 3, 
+            "value": "701", 
+            "entity": "site_id"
+          }, 
+          {
+            "start": 9, 
+            "end": 12, 
+            "value": "历史上", 
+            "entity": "time"
+          }
+        ]
+      }, 
+      {
+        "text": "ningfeng1990网站主在MAX历史上有投放吗", 
+        "intent": "invest_publisher", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 12, 
+            "value": "ningfeng1990", 
+            "entity": "publisher_id"
+          }, 
+          {
+            "start": 19, 
+            "end": 22, 
+            "value": "历史上", 
+            "entity": "time"
+          }
+        ]
+      }, 
+      {
+        "text": "3358站点在MAX上投放的量如何", 
+        "intent": "invest_publisher", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 4, 
+            "value": "3358", 
+            "entity": "site_id"
+          }
+        ]
+      }, 
+      {
+        "text": "12901站点有封禁历史吗", 
+        "intent": "invest_publisher", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 5, 
+            "value": "12901", 
+            "entity": "site_id"
+          }
+        ]
+      }, 
+      {
+        "text": "miaopu网站主有封禁历史吗", 
+        "intent": "invest_publisher", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 6, 
+            "value": "miaopu", 
+            "entity": "publisher_id"
+          }, 
+          {
+            "start": 12, 
+            "end": 14, 
+            "value": "历史", 
+            "entity": "time"
+          }
+        ]
+      }, 
+      {
+        "text": "549站点下广告位星级分布如何", 
+        "intent": "invest_publisher", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 3, 
+            "value": "549", 
+            "entity": "site_id"
+          }
+        ]
+      }, 
+      {
+        "text": "aldosti网站主下广告位星级分布如何", 
+        "intent": "invest_publisher", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 7, 
+            "value": "aldosti", 
+            "entity": "publisher_id"
+          }
+        ]
+      }, 
+      {
+        "text": "3372站点在MAX最近三个月有投放吗", 
+        "intent": "invest_publisher", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 4, 
+            "value": "3372", 
+            "entity": "site_id"
+          }, 
+          {
+            "start": 10, 
+            "end": 15, 
+            "value": "最近三个月", 
+            "entity": "time"
+          }
+        ]
+      }, 
+      {
+        "text": "weiyavision网站主在MAX最近一个月有投放吗", 
+        "intent": "invest_publisher", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 11, 
+            "value": "weiyavision", 
+            "entity": "publisher_id"
+          }, 
+          {
+            "start": 18, 
+            "end": 23, 
+            "value": "最近一个月", 
+            "entity": "time"
+          }
+        ]
+      }, 
+      {
+        "text": "30055站点的星级有低于3星的吗？比例如何？", 
+        "intent": "invest_publisher", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 5, 
+            "value": "30055", 
+            "entity": "site_id"
+          }
+        ]
+      }, 
+      {
+        "text": "jimojianshou网站主的星级有低于3星的吗？比例如何？", 
+        "intent": "invest_publisher", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 12, 
+            "value": "jimojianshou", 
+            "entity": "publisher_id"
+          }
+        ]
+      }, 
+      {
+        "text": "18902站点最近一个星期的清洗情况如何", 
+        "intent": "invest_publisher", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 5, 
+            "value": "18902", 
+            "entity": "site_id"
+          }, 
+          {
+            "start": 7, 
+            "end": 13, 
+            "value": "最近一个星期", 
+            "entity": "time"
+          }
+        ]
+      }, 
+      {
+        "text": "leejian网站主最近一个星期的清洗情况如何", 
+        "intent": "invest_publisher", 
+        "entities": [
+          {
+            "start": 0, 
+            "end": 7, 
+            "value": "leejian", 
+            "entity": "publisher_id"
+          }, 
+          {
+            "start": 10, 
+            "end": 16, 
+            "value": "最近一个星期", 
+            "entity": "time"
+          }
+        ]
+      }
+    ]
+  }
+}
