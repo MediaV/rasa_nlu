@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 from __future__ import print_function
 from __future__ import division
@@ -44,6 +45,15 @@ class JiebaTokenizer(Tokenizer, Component):
         # type: (Text) -> List[Token]
 
         import jieba
+        jieba.suggest_freq('网站主', True)
+        for i in [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 20, 30]:
+            jieba.suggest_freq(str(i) + u'天', True)
+        for i in [1, 2, 3]:
+            jieba.suggest_freq(str(i) + u'周', True)
+            jieba.suggest_freq(str(i) + u'星期', True)
+            jieba.suggest_freq(str(i) + u'个星期', True)
+            jieba.suggest_freq(str(i) + u'月', True)
+            jieba.suggest_freq(str(i) + u'个月', True)
 
         tokenized = list(jieba.tokenize(text))
         tokens = [Token(token, begin) for (token, begin, end) in tokenized]
